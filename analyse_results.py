@@ -25,7 +25,7 @@ Outputs (written to results/analysis/):
   bias_scores.csv                -- sAMB and sDIS by (model, condition, category)
   bootstrap_tests.csv            -- paired bootstrap CIs and p-values
   per_category_stats.csv         -- mean ± std accuracy/bias per category
-  c1_vs_c2_comparison.csv        -- empirical check: does C1 ≈ C2?
+  c1_vs_c2_comparison.csv        -- C1 vs C2 comparison (architecture-mode penalty)
   summary_report.txt             -- human-readable summary for the write-up
 """
 
@@ -463,7 +463,7 @@ def run():
     # =========================================================================
     # Section E: C1 vs C2 comparison (empirical check)
     # =========================================================================
-    log.info("── Checking whether C1 ≈ C2 (architecture-mode sanity check) ──")
+    log.info("── Measuring C1 vs C2 gap (architecture-mode penalty) ──")
     c1c2_rows = []
     for model in MODELS:
         c1 = f"{model}_c1_correct"
@@ -496,7 +496,7 @@ def run():
             "acc_delta":          float(acc_c2 - acc_c1),
             "answer_agreement":   float(agree_rate),
             "n":                  int(len(both)),
-            "interpretation":     "C1≈C2 confirms text reasoning unchanged by vision encoder"
+            "interpretation":     "C1 vs C2 quantifies the architecture-mode penalty: accuracy change from activating the vision encoder with a neutral image"
                                   if abs(acc_c2 - acc_c1) < 0.01
                                   else "C1 and C2 differ — architecture mode affects text reasoning",
         })
@@ -578,7 +578,7 @@ def run():
 
     lines.append("")
     lines.append("─" * 70)
-    lines.append("C1 vs C2 SANITY CHECK")
+    lines.append("C1 vs C2 — ARCHITECTURE-MODE PENALTY")
     lines.append("─" * 70)
     for row in c1c2_rows:
         lines.append(f"\n{row['model'].upper()}:"

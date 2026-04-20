@@ -1,0 +1,26 @@
+# Core ML / PyTorch stack (CUDA 12.1 build tested)
+torch==2.3.1
+transformers>=4.45,<4.50
+accelerate>=0.30
+bitsandbytes>=0.43
+safetensors>=0.4
+
+# Diffusion pipeline for SDXL-turbo image generation
+diffusers>=0.27
+
+# Data handling
+pandas>=2.0
+numpy>=1.24,<2.0
+scipy>=1.11
+
+# HuggingFace BBQ dataset loader
+datasets>=2.18
+
+# Progress bars (used throughout experiment and analysis scripts)
+tqdm>=4.65
+
+# Image I/O for SDXL outputs and blank-image C2 condition
+pillow>=10.0
+
+# Plotting (used by figure-generation scripts)
+matplotlib>=3.7

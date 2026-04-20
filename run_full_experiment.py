@@ -11,7 +11,7 @@ WHAT CHANGED vs the previous pipeline:
        C2: Qwen multimodal chat template + blank gray 512x512 image
            (activates the vision encoder with neutral content)
        C3: Qwen multimodal chat template + real sdxl-turbo image
-     This empirically measures whether C1 ≈ C2 (confirms that any C3 drop is
+     This empirically measures the C1→C2 gap (the "architecture-mode penalty"): any
      due to image *content*, not image *processing overhead*).
 
   2. Proper BBQ bias scoring (Parrish et al., 2022, eq. pp. 6):
