@@ -368,11 +368,11 @@ def run():
 
     # Primary comparisons: C1 vs C3 (the key image effect)
     # And C2 vs C3 (isolates image content from processing overhead)
-    # And C1 vs C2 (controls — should be ≈ 0 if architecture mode doesn't matter)
+    # And C1 vs C2 (isolates the architecture-mode penalty from activating the vision encoder)
     comparisons = [
         ("c1", "c3", "Image effect vs text baseline (main effect)"),
         ("c2", "c3", "Image content effect (blank image vs real image)"),
-        ("c1", "c2", "Architecture mode effect (control: should ≈ 0)"),
+        ("c1", "c2", "Architecture-mode penalty (vision encoder activation with neutral image)"),
     ]
 
     for model in MODELS:
