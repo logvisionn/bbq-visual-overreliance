@@ -5,7 +5,7 @@ Full-scale evaluation of **visual over-reliance** in Qwen2-VL on the **BBQ bias 
 > **Bachelor practical work · JKU Linz · Supervisor: Deepak Kumar, Institute of Computational Perception**
 > Mykola Len — Matriculation No. 12340329
 
-📄 **[Read the write-up (PDF)](./Mykola_Len_Visual_Overreliance_v3.pdf)**
+📄 **[Read the write-up (PDF)](./Mykola%20Len%20Visual%20Overreliance%20writeup.pdf)**
 
 ---
 
@@ -38,7 +38,7 @@ Paired bootstrap (10,000 resamples) rejects H₀ for every C2-vs-C3 comparison i
 
 ```
 .
-├── Mykola_Len_Visual_Overreliance_v3.pdf   # write-up — read this first
+├── Mykola Len Visual Overreliance writeup.pdf   # write-up — read this first
 │
 ├── run_full_experiment.py                  # all six {model × condition} inference jobs
 ├── analyse_results.py                      # accuracy, sAMB/sDIS, bootstrap, per-category
@@ -156,7 +156,7 @@ Reads all six `preds_*.csv` files, writes:
 - Dettmers, T. et al. (2023). *QLoRA: Efficient Finetuning of Quantized LLMs.* NeurIPS 2023.
 - Bianchi, F. et al. (2023). *Easily Accessible Text-to-Image Generation Amplifies Demographic Stereotypes at Large Scale.* ACM FAccT 2023.
 
-Full reference list in the [write-up PDF](./Mykola_Len_Visual_Overreliance_v3.pdf).
+Full reference list in the [write-up PDF](./Mykola%20Len%20Visual%20Overreliance%20writeup.pdf).
 
 ## License
 
