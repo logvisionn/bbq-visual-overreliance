@@ -1,0 +1,25 @@
+{
+  "pipeline_version": "v2 (post-Deepak feedback)",
+  "n_total": 58492,
+  "sdxl_model": "stabilityai/sdxl-turbo",
+  "qwen_2b": "Qwen/Qwen2-VL-2B-Instruct",
+  "qwen_7b": "Qwen/Qwen2-VL-7B-Instruct",
+  "image_size": 512,
+  "num_steps": 2,
+  "guidance": 1.2,
+  "max_new_tokens": 8,
+  "seed": 42,
+  "conditions": {
+    "c1": "text only (no image placeholder, pure text chat template)",
+    "c2": "multimodal chat template + blank gray image (vision encoder active, neutral content)",
+    "c3": "multimodal chat template + real sdxl-turbo image"
+  },
+  "versions": {
+    "python": "3.11.10",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.1",
+    "diffusers": "0.30.0",
+    "datasets": "2.19.0",
+    "pandas": "2.2.2"
+  }
+}

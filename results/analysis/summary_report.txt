@@ -1,0 +1,99 @@
+======================================================================
+BBQ VISUAL OVER-RELIANCE EXPERIMENT — ANALYSIS SUMMARY
+======================================================================
+
+Dataset: BBQ (Parrish et al., 2022), n = 58,492
+Categories: 11
+Conditions per model: 3  (C1: text-only, C2: +blank image, C3: +real image)
+Models: Qwen2-VL-2B-Instruct, Qwen2-VL-7B-Instruct  (both 4-bit NF4)
+Bootstrap: 10,000 iterations per comparison
+
+──────────────────────────────────────────────────────────────────────
+DATA COVERAGE (rows available per condition after filtering)
+──────────────────────────────────────────────────────────────────────
+
+Invalid rows are excluded from all analyses. A row is invalid if:
+  - raw == 'IMAGE_MISSING' (SDXL generation failure, C3 only)
+  - raw starts with 'ERROR:' (inference exception)
+  - norm is not in {A, B, C}
+
+QWEN2B:
+  C1: 58,492/58,492 valid (100.00%)  |  missing=0  error=0  unparseable=0
+  C2: 58,492/58,492 valid (100.00%)  |  missing=0  error=0  unparseable=0
+  C3: 58,011/58,492 valid (99.18%)  |  missing=481  error=0  unparseable=0
+
+QWEN7B:
+  C1: 58,492/58,492 valid (100.00%)  |  missing=0  error=0  unparseable=0
+  C2: 58,492/58,492 valid (100.00%)  |  missing=0  error=0  unparseable=0
+  C3: 58,011/58,492 valid (99.18%)  |  missing=481  error=0  unparseable=0
+
+──────────────────────────────────────────────────────────────────────
+OVERALL ACCURACY (acc) AND BBQ BIAS SCORES (sAMB, sDIS)
+──────────────────────────────────────────────────────────────────────
+
+QWEN2B:
+  C1: acc = 0.5463  sAMB = +0.0792  sDIS = +0.0143
+  C2: acc = 0.5239  sAMB = +0.0758  sDIS = +0.0154
+  C3: acc = 0.4981  sAMB = +0.0840  sDIS = +0.0270
+
+QWEN7B:
+  C1: acc = 0.8044  sAMB = +0.0980  sDIS = -0.0032
+  C2: acc = 0.6981  sAMB = +0.1099  sDIS = +0.0000
+  C3: acc = 0.6563  sAMB = +0.1132  sDIS = +0.0067
+
+──────────────────────────────────────────────────────────────────────
+NULL HYPOTHESIS TESTS — paired bootstrap on accuracy
+──────────────────────────────────────────────────────────────────────
+
+QWEN2B — Image effect vs text baseline (main effect)
+  H0: E[correct_c1] = E[correct_c3]
+  Delta = -0.0483  95% CI = [-0.0514, -0.0453]  std = 0.0015  p = 0.0000
+  → REJECT H0
+
+QWEN2B — Image content effect (blank image vs real image)
+  H0: E[correct_c2] = E[correct_c3]
+  Delta = -0.0260  95% CI = [-0.0287, -0.0233]  std = 0.0014  p = 0.0000
+  → REJECT H0
+
+QWEN2B — Architecture mode effect (control: should ≈ 0)
+  H0: E[correct_c1] = E[correct_c2]
+  Delta = -0.0224  95% CI = [-0.0242, -0.0207]  std = 0.0009  p = 0.0000
+  → REJECT H0
+
+QWEN7B — Image effect vs text baseline (main effect)
+  H0: E[correct_c1] = E[correct_c3]
+  Delta = -0.1503  95% CI = [-0.1536, -0.1471]  std = 0.0017  p = 0.0000
+  → REJECT H0
+
+QWEN7B — Image content effect (blank image vs real image)
+  H0: E[correct_c2] = E[correct_c3]
+  Delta = -0.0435  95% CI = [-0.0461, -0.0409]  std = 0.0013  p = 0.0000
+  → REJECT H0
+
+QWEN7B — Architecture mode effect (control: should ≈ 0)
+  H0: E[correct_c1] = E[correct_c2]
+  Delta = -0.1063  95% CI = [-0.1090, -0.1035]  std = 0.0014  p = 0.0000
+  → REJECT H0
+
+──────────────────────────────────────────────────────────────────────
+C1 vs C2 SANITY CHECK
+──────────────────────────────────────────────────────────────────────
+
+QWEN2B:
+  acc(C1) = 0.5463  acc(C2) = 0.5239  delta = -0.0224
+  Answer-level agreement: 0.9332
+  → C1 and C2 differ — architecture mode affects text reasoning
+
+QWEN7B:
+  acc(C1) = 0.8044  acc(C2) = 0.6981  delta = -0.1063
+  Answer-level agreement: 0.8652
+  → C1 and C2 differ — architecture mode affects text reasoning
+
+──────────────────────────────────────────────────────────────────────
+FILES WRITTEN (under results/analysis/):
+  accuracy_summary.csv
+  bias_scores.csv
+  bootstrap_tests.csv
+  per_category_stats.csv
+  c1_vs_c2_comparison.csv
+  summary_report.txt

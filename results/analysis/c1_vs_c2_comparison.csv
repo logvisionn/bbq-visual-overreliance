@@ -1,0 +1,3 @@
+model,acc_c1,acc_c2,acc_delta,answer_agreement,n,interpretation
+qwen2b,0.546331122204746,0.5238836080147713,-0.022447514189974704,0.9332387335020174,58492,C1 and C2 differ — architecture mode affects text reasoning
+qwen7b,0.804400601791698,0.698129658756753,-0.106270943034945,0.865178144019695,58492,C1 and C2 differ — architecture mode affects text reasoning
